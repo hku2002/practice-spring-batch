@@ -1,7 +1,8 @@
 spring:
   batch:
     job:
-      names: ${job.name:NONE}
+      name: ${job.name:NONE}
+      enabled: true
     jdbc:
       initialize-schema: always
   h2:
@@ -14,4 +15,9 @@ spring:
       username: sa
       password:
   jpa:
-    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
