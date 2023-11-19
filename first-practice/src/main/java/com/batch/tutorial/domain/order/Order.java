@@ -1,6 +1,7 @@
 package com.batch.tutorial.domain.order;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +21,11 @@ public class Order {
     private int price;
     private LocalDateTime orderDateTime;
 
+    @Builder
+    public Order(Long id, String orderName, int price, LocalDateTime orderDateTime) {
+        this.id = id;
+        this.orderName = orderName;
+        this.price = price;
+        this.orderDateTime = orderDateTime;
+    }
 }
