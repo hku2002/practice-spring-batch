@@ -18,6 +18,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import java.util.List;
 
+/**
+ * 파일명 validation 배치
+ * params: --spring.batch.job.name=validateParam -fileName=test.csv
+ */
 @Slf4j
 @Configuration
 public class ValidateParamConfig {
