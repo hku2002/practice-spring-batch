@@ -21,3 +21,7 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+  sql:
+    init:
+      data-locations: data.sql
+      schema-locations: schema.sql
