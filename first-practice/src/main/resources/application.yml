@@ -11,7 +11,7 @@ spring:
       path: /h2-console
     datasource:
       driver-class-name: org.h2.Driver
-      url: jdbc:h2:~/batch
+      url: jdbc:h2:mem:db;MODE=MYSQL
       username: sa
       password:
   jpa:
@@ -21,7 +21,10 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true
+    database: h2
   sql:
     init:
-      data-locations: data.sql
-      schema-locations: schema.sql
+      data-locations: classpath*:data.sql
+      mode: always
