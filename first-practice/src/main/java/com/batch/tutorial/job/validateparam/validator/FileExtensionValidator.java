@@ -5,7 +5,7 @@ import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.JobParametersValidator;
 import org.springframework.util.StringUtils;
 
-public class FileExtensionValidation implements JobParametersValidator {
+public class FileExtensionValidator implements JobParametersValidator {
     @Override
     public void validate(JobParameters parameters) throws JobParametersInvalidException {
         assert parameters != null;

@@ -1,6 +1,6 @@
 package com.batch.tutorial.job.validateparam;
 
-import com.batch.tutorial.job.validateparam.validator.FileExtensionValidation;
+import com.batch.tutorial.job.validateparam.validator.FileExtensionValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -22,7 +22,7 @@ public class ValidateParamConfig {
     @Bean
     public Job validateParamJob(JobRepository jobRepository, Step validateParamStep) {
         return new JobBuilder("validateParam", jobRepository)
-                .validator(new FileExtensionValidation())
+                .validator(new FileExtensionValidator())
                 .start(validateParamStep)
                 .build();
     }
