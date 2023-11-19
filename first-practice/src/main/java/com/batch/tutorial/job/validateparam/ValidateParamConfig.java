@@ -32,7 +32,7 @@ public class ValidateParamConfig {
 
     @Bean
     public Step validateParamStep(JobRepository jobRepository, Tasklet validateParamTasklet, PlatformTransactionManager platformTransactionManager) {
-        return new StepBuilder("val idateParamStep", jobRepository)
+        return new StepBuilder("validateParamStep", jobRepository)
                 .tasklet(validateParamTasklet, platformTransactionManager)
                 .build();
     }
