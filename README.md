@@ -3,4 +3,4 @@
 
 # 환경
 - java: 17
-- spring boot: 3x
+- spring boot: 3.x.x
