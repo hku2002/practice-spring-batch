@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.job.CompositeJobParametersValidator;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -15,6 +16,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.util.List;
+
 @Slf4j
 @Configuration
 public class ValidateParamConfig {
@@ -22,14 +25,14 @@ public class ValidateParamConfig {
     @Bean
     public Job validateParamJob(JobRepository jobRepository, Step validateParamStep) {
         return new JobBuilder("validateParam", jobRepository)
-                .validator(new FileExtensionValidator())
+                .validator(multipleValidator())
                 .start(validateParamStep)
                 .build();
     }
 
     @Bean
     public Step validateParamStep(JobRepository jobRepository, Tasklet validateParamTasklet, PlatformTransactionManager platformTransactionManager) {
-        return new StepBuilder("validateParamStep", jobRepository)
+        return new StepBuilder("val idateParamStep", jobRepository)
                 .tasklet(validateParamTasklet, platformTransactionManager)
                 .build();
     }
@@ -41,6 +44,12 @@ public class ValidateParamConfig {
             log.info(">>>>>> validate param!");
             return RepeatStatus.FINISHED;
         };
+    }
+
+    private CompositeJobParametersValidator multipleValidator() {
+        CompositeJobParametersValidator validator = new CompositeJobParametersValidator();
+        validator.setValidators(List.of(new FileExtensionValidator()));
+        return validator;
     }
 
 }
