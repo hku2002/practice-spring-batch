@@ -23,6 +23,7 @@ public class JobListenerConfig {
     @Bean
     public Job jobListenerJob(JobRepository jobRepository, Step jobListenerStep) {
         return new JobBuilder("jobListener", jobRepository)
+                .listener(new JobLoggerListener())
                 .start(jobListenerStep)
                 .build();
     }
