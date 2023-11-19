@@ -5,7 +5,6 @@ import com.batch.tutorial.domain.order.OrderRepository;
 import com.batch.tutorial.domain.settlement.Settlement;
 import com.batch.tutorial.domain.settlement.SettlementRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobScope;
@@ -32,7 +31,6 @@ import java.util.List;
  * 주문 데이터를 정산으로 마이그레이션 하는 배치
  * params: --spring.batch.job.name=orderToSettlementJob
  */
-@Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class SettlementJobConfig {
