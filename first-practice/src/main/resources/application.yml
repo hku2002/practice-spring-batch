@@ -10,7 +10,7 @@ spring:
   batch:
     job:
       name: ${job.name:NONE}
-      enabled: true
+      enabled: false
     jdbc:
       initialize-schema: always
   h2:
