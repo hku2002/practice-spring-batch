@@ -20,6 +20,7 @@ import java.util.Collections;
 public class SampleScheduler {
 
     private final Job helloWorldJob;
+    private final Job orderToSettlementJob;
     private final JobLauncher jobLauncher;
 
     @Scheduled(cron = "0 */1 * * * *")
@@ -29,5 +30,13 @@ public class SampleScheduler {
         );
 
         jobLauncher.run(helloWorldJob, jobParameters);
+    }
+
+    @Scheduled(cron = "*/30 * * * * *")
+    public void orderToSettlementJobRun() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+        JobParameters jobParameters = new JobParameters(
+                Collections.singletonMap("requestTime", new JobParameter<>(LocalDateTime.now(), LocalDateTime.class))
+        );
+        jobLauncher.run(orderToSettlementJob, jobParameters);
     }
 }
